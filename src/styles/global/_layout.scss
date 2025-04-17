@@ -1,0 +1,15 @@
+
+//* container bottoni nav bar e scelta colore
+//* X-INDEX 10000
+.button-box-top {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  gap: var(--spacing-md);
+  right: 1%;
+  height: fit-content;
+  width: fit-content;
+  top: 2%;
+  z-index: 10000;
+}
+//* =====================================

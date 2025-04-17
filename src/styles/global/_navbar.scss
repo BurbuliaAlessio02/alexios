@@ -1,0 +1,55 @@
+//* Navbar styles
+//* Z INDEX 9'000 (FIXED)
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+  background-color: var(--color-secondary);
+  position: fixed;
+  z-index: 9000;
+  width: 100%;
+  height: 100%;
+
+  &__bottom {
+    height: fit-content;
+    position: absolute;
+    justify-self: flex-start;
+    right: 1%;
+    bottom: 5%;
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+
+    .navbar__item {
+      position: relative;
+
+      a {
+        text-decoration: none;
+        font-family: var(--mulish-font);
+        color: var(--color-primary);
+        font-weight: 500;
+        font-size: calc(1rem + 3vw);
+        transition: color 0.3s ease;
+      }
+
+      .block {
+        width: 0%;
+        height: 7px;
+        background-color: var(--color-primary);
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        transition: width 0.3s ease;
+      }
+
+      &:hover .block {
+        width: 100%;
+      }
+    }
+  }
+}
+//* ========================

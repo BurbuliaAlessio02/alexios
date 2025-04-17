@@ -1,0 +1,119 @@
+/* 
+* homepage.scss - Root di stile
+
+* Autore: Alessio Burbulia
+
+* Descrizione: Il scss funge sia di import da stili necessari per la pagina
+* che da generico stile del file il [app/[locale]/page.tsx]
+*/
+
+.header{
+  overflow: hidden;
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--color-secondary);
+
+
+h1.title{
+  display: none;
+}
+
+.titleBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  height: fit-content;
+  width: fit-content;
+  position: relative;
+  width: fit-content;
+  font-size: calc(2.5rem + 10vw);
+  font-family: var(--font-poppins);
+  font-weight: 500;
+  user-select: none;
+}
+
+.logoImageLetter{
+  max-width: 30%;
+}
+
+
+.letterWrapper, .letter-ios-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.letterGroup {
+  display: flex;
+  gap: 0.5rem; // Spazio tra le lettere
+}
+
+.boxPortfoil {
+  align-self: center;
+  position: absolute;
+  top: 80%; // subito sotto le lettere ios
+  background-color: var(--color-primary);
+  padding: var(--spacing-xs) var(--spacing-md);
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: calc(100vh - 60%);
+  z-index: 1;
+
+  .portfoil{
+    font-size: calc(0.5rem + 4vw);
+    color: var(--color-secondary);
+  }
+}
+
+.box {
+  font-size: calc(2.5rem + 10vw);
+  background-color: var(--color-primary);
+  width: fit-content;
+  padding: 0;
+  position: absolute;
+  top: 80%; // posizione sotto la prima "a"
+  left: 0;
+  height: calc(100vh - 60%); // o regola per farla scendere quanto serve
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  user-select: none;
+}
+
+.rectangleWrapper{
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.5rem;
+  height: fit-content;
+  width: 40%;
+  z-index: 1;
+}
+
+.rectangle {
+  width: 100%;
+  height: calc(0.5rem + 4vw);
+  background-color: var(--color-primary);
+  user-select: none;
+}
+
+.number61{
+  font-size: calc(0.5rem + 4vw);
+  color: var(--color-primary);
+}
+}

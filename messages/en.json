@@ -1,0 +1,24 @@
+{
+  "navbar" : {
+    "projects" : "projects",
+    "about" : "about me",
+    "contact" : "contact",
+
+    "darkMode" : "Dark Mode",
+    "lightMode" : "Light Mode",
+    "languages" : "whisper your world"
+  },
+
+  "buttons" : {
+    "navbar" : "This is the navbar"
+  },
+  "home": {
+    "alt": {
+      "logoImage" : {
+        "letterX": "il logo della lettera X" 
+      }
+    },
+    "colorMode" : "As you prefer.",
+    "description": "portfoil"
+  }
+}
