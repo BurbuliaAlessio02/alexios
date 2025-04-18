@@ -1,14 +1,15 @@
-import type { Metadata } from "next"; //* GESTIONE META DATI
-
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
+// app/[locale]/layout.tsx
+import type { Metadata } from 'next';
+import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
-import { routing } from "@/i18n/routing";
+import { getMessages } from 'next-intl/server';
+import Providers from './providersClient';
 
+import { routing } from '@/i18n/routing';
 import '@/styles/global/index.scss';
+import NavLayoutClient from './NavLayoutClient';
 
-//* ============ GESTIONE META DATI ==========
-export const metadata: Metadata = { 
-  //* FAVICON
+export const metadata: Metadata = {
   icons: {
     icon: '/favicon/favicon-96x96.png',
     shortcut: '/favicon/favicon.ico',
@@ -20,35 +21,34 @@ export const metadata: Metadata = {
     },
   },
   manifest: '/favicon/site.webmanifest',
-  //* ========================================
-}
-//* ---------------------------------------------------------------
+};
 
-export default async function LocaleLayout({
-  children,
-  params
-}: {
+export default async function LocaleLayout(props: {
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
+  params: { locale: string };
 }) {
+  
+  const { children } = props;
+  const { locale } = await Promise.resolve(props.params);
 
-  //* Locale detection
-  // Ensure that the incoming `locale` is valid
-  const {locale} = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-  //* --------------
 
-    return (
-      <html lang={locale}>
-        <body
-          className={` antialiased`}
-        >
-          <NextIntlClientProvider locale={locale}>
+  const messages = await getMessages();
+
+  return (
+    <html 
+    lang={locale}
+    suppressHydrationWarning
+    >
+      <body className="antialiased">
+        <Providers locale={locale} messages={messages}>
+          <NavLayoutClient>
             {children}
-          </NextIntlClientProvider>
-        </body>
-      </html>
+          </NavLayoutClient>
+        </Providers>
+      </body>
+    </html>
   );
 }

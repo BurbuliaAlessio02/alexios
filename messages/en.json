@@ -8,11 +8,10 @@
     "lightMode" : "Light Mode",
     "languages" : "whisper your world"
   },
-
   "buttons" : {
     "navbar" : "This is the navbar"
   },
-  "home": {
+  "headerHomePage": {
     "alt": {
       "logoImage" : {
         "letterX": "il logo della lettera X" 

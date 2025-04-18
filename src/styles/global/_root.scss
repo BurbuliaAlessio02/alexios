@@ -46,21 +46,15 @@
   --shadow-xl: 0 1px 12px rgba(0,0,0,0.22);
 }
 
-/* 3. DARK THEME OVERRIDES */
-//TODO OPEN ON FINISH PROJECT
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --color-primary: #ffffff;
-//     --color-secondary: #000000;
-//     --color-tertiary: #1c1c1c;
-//     --color-accent: #00d157;
-//     --color-danger: #e00000;
-
-//     --shadow-sm: 0 1px 3px rgba(255, 255, 255, 0.05);
-//     --shadow-md: 0 4px 6px rgba(255, 255, 255, 0.08);
-//     --shadow-lg: 0 10px 15px rgba(255, 255, 255, 0.1);
-//   }
-// }
+.dark {
+  --color-primary: #ffffff;
+  --color-secondary: #000000;
+  --color-tertiary: #1c1c1c;
+  --color-accent: #2378f7;
+  --color-danger: #e00000;
+  --color-background: #000000;
+  --color-text: #ffffff;
+}
 
 *,
 *::before,
@@ -71,29 +65,40 @@
 }
 
 html {
+  background-color: var(--color-background);
   scroll-behavior: smooth;
   font-size: 100%; // 1rem = 16px
 }
 
-body {
-  font-family: var(--font-body);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  transition: background-color 0.3s ease, color 0.3s ease;
+//* necessario per il change color animato
+html, body, *{
+  transition:
+  background-color 1s ease,
+  color 1s ease,
+  border-color 1s ease;
 }
+//* ====================================
 
 body {
   font-family: var(--font-mulish);
   font-size: var(--font-size-base);
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  line-height: var(--line-height-base);
   opacity: 1;
+}
+
+
+body {
   transition: opacity 0.3s ease-in-out;
 }
 
 /* Classe che innesca l’animazione */
 body.fade-out {
   opacity: 0;
+  background-color: var(--color-background);
 }
 
 h1, h2, h3, h4 {

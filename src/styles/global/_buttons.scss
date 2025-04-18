@@ -5,16 +5,17 @@
 //* === BOTTONE NAV BAR ===
 
 //* Z INDEX 10'000 (FIXED)
-.navBarBox{
+.buttonNavBar{
   display: flex;
   flex-direction: row-reverse;
-  gap: var(--spacing-md);
   align-items: flex-start;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
+  padding: var(--spacing-md);
+  top: 0;
+  right: 0;
   z-index: 10000;
   background-color: transparent;
-  
+  position: fixed;
+
   .menuNavBar{
     z-index: 2;
     border: none;
@@ -179,22 +180,23 @@ $boxHeight: 60px; // Altezza fissa e coerente
 .toggle-color-box{
   font-family: var(--font-mulish);
   z-index: 10000;
-  height: calc(2rem + 2vw);
+  height: 60px;
+  background-color: var(--color-primary);
+  padding: var(--spacing-xs);
   
   .toggle-color-mode {
     height: 100%;
     z-index: 2;
     aspect-ratio: 2/1;
-    background-color: var(--color-primary);
     gap: var(--spacing-md);
 
     &__circle {
       background-color: var(--color-secondary);
-      width: 36%;
+      height: 100%;
       aspect-ratio: 1/1;
-
+      
       position: relative;
-      left: 6%;
+
 
       clip-path: polygon(
         25% 0%, 75% 0%,

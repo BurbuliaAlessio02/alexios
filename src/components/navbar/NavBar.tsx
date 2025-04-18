@@ -1,40 +1,44 @@
-'use client'; //* componente da renderizzare lato client
+'use client';
 
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import LangChangeButton from '../language/LangChangeButton';
-import { ChooseColorButton } from '../choose-color/ChooseColorButton';
+import LangChangeButton from '../buttons/LangChangeButton';
+import { ChooseColorButton } from '../buttons/ChooseColorButton';
+import { useEffect, useRef } from 'react';
 
-export const NavBar = () => {
+const navItems = [
+  { href: '/', label: 'HOME' },
+  { href: '/projects', key: 'projects' },
+  { href: '/about', key: 'about' },
+  { href: '/contact', key: 'contact' },
+  { href: '/blog', label: 'blog' },
+];
+
+const NavBar = ({ setNavRef }: { setNavRef: (ref: HTMLElement | null) => void }) => {
   const t = useTranslations('navbar');
-  
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (navRef.current) {
+      setNavRef(navRef.current);
+    }
+  }, [setNavRef]);
+
   return (
-    <nav className="navbar">
-      {/* LISTA PAGINE */}
+    <nav className="navbar" ref={navRef}>
       <ul className="navbar__menu">
-      <li className="navbar__item">
-      <Link href="/" lang="en">HOME</Link>
-      <div className='block'></div>
-      </li>
-      <li className="navbar__item">
-      <Link href="/projects">{t('projects')}</Link>
-      <div className='block'></div>
-      </li>
-      <li className="navbar__item">
-      <Link href="/about">{t('about')}</Link>
-      <div className='block'></div>
-      </li>
-      <li className="navbar__item">
-      <Link href="/contact">{t('contact')}</Link>
-      <div className="block"></div>
-      </li>
-      <li className="navbar__item">
-      <Link href="/blog" lang="en">blog</Link>
-      <div className='block'></div>
-      </li>
+        {navItems.map((item, index) => (
+          <li
+            className="navbar__item relative overflow-hidden"
+            key={index}
+          >
+            <Link href={item.href}>{item.label || t(item.key!)}</Link>
+            <div className="overlay" />
+          </li>
+        ))}
       </ul>
-    {/* BOTTONE MULTILINGUA */}
       <div className="navbar__bottom">
+        <ChooseColorButton />
         <LangChangeButton />
       </div>
     </nav>

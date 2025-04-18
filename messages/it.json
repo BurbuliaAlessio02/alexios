@@ -11,7 +11,7 @@
   "buttons" : {
     "navbar" : "Questa è la navbar"
   },
-  "home": {
+  "headerHomePage": {
     "alt": {
       "logoImage" : {
         "letterX": "the logo of the letter X" 

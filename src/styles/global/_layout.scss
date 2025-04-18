@@ -5,11 +5,16 @@
   display: flex;
   align-items: center;
   position: fixed;
-  gap: var(--spacing-md);
-  right: 1%;
+  padding: var(--spacing-lg);
+  top: 0;
+  right: 0;
   height: fit-content;
-  width: fit-content;
-  top: 2%;
   z-index: 10000;
+  transition: padding 0.3s ease-in-out;
 }
+
+.button-box-top:has(.menuNavBar.open){
+  padding: 0;
+}
+
 //* =====================================

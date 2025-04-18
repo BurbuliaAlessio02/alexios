@@ -1,21 +1,16 @@
 'use client'
 
 import gsap from "gsap";
-import { useTranslations } from "next-intl";
-import { useRef, useState, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useEffect } from "react";
 import clsx from "clsx";
 
-const ButtonNavBar = () => {
-  const t = useTranslations('buttons');
-
+const ButtonNavBar = ({ isOpen, toggleMenu }: { isOpen: boolean; toggleMenu: () => void }) => {
   const containerRef = useRef<HTMLButtonElement | null>(null);
   const circle1Ref = useRef<HTMLDivElement | null>(null);
   const circle3Ref = useRef<HTMLDivElement | null>(null);
 
   const initialWidth = useRef(0);
   const initialHeight = useRef(0);
-
-  const [isOpen, setIsOpen] = useState(false);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -25,7 +20,7 @@ const ButtonNavBar = () => {
     }
   }, []);
 
-  const toggleMenu = () => {
+  useEffect(() => {
     const container = containerRef.current;
     const c1 = circle1Ref.current;
     const c3 = circle3Ref.current;
@@ -38,7 +33,7 @@ const ButtonNavBar = () => {
 
     const tl = gsap.timeline();
 
-    if (!isOpen) {
+    if (isOpen) {
       tl.to(c1, { rotate: 45, y: center, duration: 0.3, ease: "circ.inOut" }, 0)
         .to(c3, { rotate: -45, y: -center, duration: 0.3, ease: "circ.inOut" }, 0)
         .to(container, { width: height, duration: 0.5, ease: "expo.out" }, 0);
@@ -47,11 +42,10 @@ const ButtonNavBar = () => {
         .to(c1, { rotate: 0, y: 0, duration: 0.3, ease: "circ.inOut" }, 0)
         .to(c3, { rotate: 0, y: 0, duration: 0.3, ease: "circ.inOut" }, 0);
     }
-    setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
   return (
-    <div className="navBarBox">
+    <div className="buttonNavBar">
       <button
         className={clsx("menuNavBar", { open: isOpen })}
         ref={containerRef}
@@ -60,8 +54,6 @@ const ButtonNavBar = () => {
         <div className="circle" ref={circle1Ref}></div>
         <div className="circle"></div>
         <div className="circle" ref={circle3Ref}></div>
-
-        {/* Elemento X extra */}
         <div className="x-icon"></div>
       </button>
     </div>
