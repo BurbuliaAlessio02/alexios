@@ -1,23 +1,30 @@
 {
-  "navbar" : {
-    "projects" : "projects",
-    "about" : "about me",
-    "contact" : "contact",
-
-    "darkMode" : "Dark Mode",
-    "lightMode" : "Light Mode",
-    "languages" : "whisper your world"
-  },
-  "buttons" : {
-    "navbar" : "This is the navbar"
-  },
-  "headerHomePage": {
-    "alt": {
-      "logoImage" : {
-        "letterX": "il logo della lettera X" 
+  "imagesAlt":{
+    "home" : {
+      "header" : {
+        "logo" : "Alexios main logo image"
       }
+    }
+  },
+
+  "layout" : {
+    "navbar" : {
+      "projects" : "projects",
+      "about" : "about me",
+      "contact" : "contacts"
     },
-    "colorMode" : "As you prefer.",
-    "description": "portfoil"
+    "buttonLang" : "whisper your world"
+  },
+  "home" : {
+    
+  },
+  "projects" : {
+
+  },
+  "about" : {
+
+  },
+  "contact" : {
+  
   }
 }

@@ -1,59 +1,33 @@
 'use client'
 
-import gsap from "gsap";
-import { useRef, useLayoutEffect, useEffect } from "react";
 import clsx from "clsx";
+import { useMenuAnimation } from "../../hooks/useMenuAnimation";
 
+/**
+ * ButtonNavBar component that manages the navigation button with animation.
+ * 
+ * @param {Object} props - The properties object.
+ * @param {boolean} props.isOpen - Indicates if the menu is open.
+ * @param {Function} props.toggleMenu - Function to toggle the menu state.
+ * 
+ * @returns {JSX.Element} The rendered button navigation component.
+ */
 const ButtonNavBar = ({ isOpen, toggleMenu }: { isOpen: boolean; toggleMenu: () => void }) => {
-  const containerRef = useRef<HTMLButtonElement | null>(null);
-  const circle1Ref = useRef<HTMLDivElement | null>(null);
-  const circle3Ref = useRef<HTMLDivElement | null>(null);
-
-  const initialWidth = useRef(0);
-  const initialHeight = useRef(0);
-
-  useLayoutEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      initialWidth.current = container.offsetWidth;
-      initialHeight.current = container.offsetHeight;
-    }
-  }, []);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    const c1 = circle1Ref.current;
-    const c3 = circle3Ref.current;
-
-    if (!container || !c1 || !c3) return;
-
-    const height = initialHeight.current;
-    const width = initialWidth.current;
-    const center = height / 3.5;
-
-    const tl = gsap.timeline();
-
-    if (isOpen) {
-      tl.to(c1, { rotate: 45, y: center, duration: 0.3, ease: "circ.inOut" }, 0)
-        .to(c3, { rotate: -45, y: -center, duration: 0.3, ease: "circ.inOut" }, 0)
-        .to(container, { width: height, duration: 0.5, ease: "expo.out" }, 0);
-    } else {
-      tl.to(container, { width: width, duration: 0.5, ease: "expo.inOut" }, 0)
-        .to(c1, { rotate: 0, y: 0, duration: 0.3, ease: "circ.inOut" }, 0)
-        .to(c3, { rotate: 0, y: 0, duration: 0.3, ease: "circ.inOut" }, 0);
-    }
-  }, [isOpen]);
+  // Destructure the animation references from the hook
+  const { containerRef, circle1Ref, circle3Ref } = useMenuAnimation(isOpen);
 
   return (
-    <div className="buttonNavBar">
+    <div className="buttonNavBar hover-cursor">
       <button
         className={clsx("menuNavBar", { open: isOpen })}
         ref={containerRef}
         onClick={toggleMenu}
       >
+        {/* Circle elements for animation */}
         <div className="circle" ref={circle1Ref}></div>
         <div className="circle"></div>
         <div className="circle" ref={circle3Ref}></div>
+        {/* Icon to represent the menu state */}
         <div className="x-icon"></div>
       </button>
     </div>

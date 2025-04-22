@@ -16,6 +16,9 @@ type HeaderAnimationRefs = {
 
 export const useHeaderAnimation = ({ refs }: { refs: HeaderAnimationRefs }) => {
   useLayoutEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
   
@@ -88,7 +91,7 @@ export const useHeaderAnimation = ({ refs }: { refs: HeaderAnimationRefs }) => {
       );
   
     }, refs.wrapperRef);
-  
+
     return () => ctx.revert();
   }, [refs]);
 };

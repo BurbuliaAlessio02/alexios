@@ -3,11 +3,16 @@
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 
+/**
+ * LangChangeButton component that allows users to switch the application's language.
+ * 
+ * @returns {JSX.Element} The rendered language change button component.
+ */
 const LangChangeButton = () => {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
-  const t = useTranslations('navbar');
+  const t = useTranslations('layout');
   
   /**
   * 🇮🇹 Cambia la lingua dell'applicazione applicando una transizione di uscita (fade-out)
@@ -33,10 +38,10 @@ const LangChangeButton = () => {
   };
   
   return (
-    <div className="chiose-language-box">
+    <div className="chiose-language-box hover-cursor">
       <div className="inner-scroll">
         <div className="language">
-          <p>{t('languages')}</p>
+          <p>{t('buttonLang')}</p>
         </div>
         <div className="toggle-language">
           <button onClick={() => switchTo('en')}>EN</button>

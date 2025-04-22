@@ -1,20 +1,26 @@
+// HeaderHomePage.tsx
 'use client';
 
-// app/it/page.tsx
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import NavBar from '@/components/navbar/NavBar';
-
-
-import style from '@/styles/pages/homepage/homepage.module.scss'; // styling per la pagina in se
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
+import style from '@/styles/pages/homepage/homepage.module.scss';
 import useHeaderAnimation from '../../hooks/useHeadersAnimation';
+import AlexiosLogo from '../logos-image/AlexiosLogo';
 
-const HeaderHomePage = () => {
-  const t = useTranslations('headerHomePage');
-  const alt = useTranslations('headerHomePage.alt');
+type Props = {
+  onReady?: () => void;
+};
 
-  // Refs per gli elementi da animare
+/**
+ * HeaderHomePage component that displays the header with animations.
+ * 
+ * @param {Props} props - The properties object.
+ * @param {Function} [props.onReady] - Optional callback function to be called when the component is ready.
+ * 
+ * @returns {JSX.Element} The rendered header component.
+ */
+const HeaderHomePage = ({ onReady }: Props) => {
+
+  // Refs per animazioni
   const rectangleRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLParagraphElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -26,8 +32,8 @@ const HeaderHomePage = () => {
   const letterL = useRef<HTMLParagraphElement>(null);
   const letterE = useRef<HTMLParagraphElement>(null);
 
-  // Utilizzo il nuovo custom hook per le animazioni
-  useHeaderAnimation({
+  // Memoized options for header animations
+  const animationOptions = useMemo(() => ({
     refs: {
       rectangleRef,
       numberRef,
@@ -38,8 +44,12 @@ const HeaderHomePage = () => {
       letterE,
       iosWrapper,
       boxPortfoil
-    }
-  });
+    },
+    isLoaded: true
+  }), []);
+
+  // Initialize header animations
+  useHeaderAnimation(animationOptions);
 
   return (
     <header className={style.header}>
@@ -64,13 +74,7 @@ const HeaderHomePage = () => {
         <p className={`${style.letter} letter-e`} ref={letterE}>
           <span>e</span>
         </p>
-        <Image
-          src={'/images/logos/logo-black/logo-black-letter.png'}
-          alt={alt('logoImage.letterX')}
-          className={style.logoImageLetter}
-          width={500}
-          height={500}
-        />
+        <AlexiosLogo onLoad={onReady} />
         <div className={`${style.letterWrapper} letter-ios-wrapper`}>
           <div className={style.letterGroup} ref={iosWrapper}>
             <p className={`${style.letter} letter-i`}>
@@ -84,14 +88,13 @@ const HeaderHomePage = () => {
             </p>
           </div>
           <div className={style.boxPortfoil} ref={boxPortfoil}>
-            <p className={style.portfoil}>{t('description')}</p>
+            <p className={style.portfoil}>portfolio</p>
           </div>
         </div>
       </div>
-      {/** il titolo serve solo per la seo (display none) */}
       <h1 className={style.title}>alexios</h1>
     </header>
   );
-}
+};
 
 export default HeaderHomePage;

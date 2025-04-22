@@ -15,7 +15,9 @@ const navItems = [
 ];
 
 const NavBar = ({ setNavRef }: { setNavRef: (ref: HTMLElement | null) => void }) => {
-  const t = useTranslations('navbar');
+
+  const t = useTranslations('layout.navbar');
+  
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -29,10 +31,10 @@ const NavBar = ({ setNavRef }: { setNavRef: (ref: HTMLElement | null) => void })
       <ul className="navbar__menu">
         {navItems.map((item, index) => (
           <li
-            className="navbar__item relative overflow-hidden"
+            className="navbar__item"
             key={index}
           >
-            <Link href={item.href}>{item.label || t(item.key!)}</Link>
+            <Link className='hover-cursor' href={item.href}>{item.label || t(item.key!)}</Link>
             <div className="overlay" />
           </li>
         ))}

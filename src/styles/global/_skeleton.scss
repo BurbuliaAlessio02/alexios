@@ -1,0 +1,13 @@
+.skeleton-page{
+  position: fixed;
+  height: 100dvh;
+  width: 100dvw;
+  background-color: var(--color-secondary);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(3rem + 2vw);
+  font-family: var(--font-code);
+  font-weight: 700;
+}
